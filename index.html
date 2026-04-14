@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Diseño de Interiores | Estudio Creativo</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1e1e2a;
+            line-height: 1.5;
+        }
+
+        /* === FONDO CON CARRUSEL DE IMÁGENES === */
+        .hero-slideshow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        /* Overlay oscuro/sutil para mejorar contraste del texto */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          background-color: rgba(0, 0, 0, 0.35); /* Más claro que antes */
+            z-index: -1;
+        }
+
+        /* Contenedor principal para que el contenido esté sobre el fondo */
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+            background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(1.5px);
+            border-radius: 0;
+            margin: 20px 0;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* TABS */
+        .tabs-container {
+            margin: 40px 0 20px;
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid rgba(226, 226, 232, 0.6);
+            padding-bottom: 12px;
+        }
+        .tab-btn {
+            background: rgba(255,255,240,0.85);
+            backdrop-filter: blur(4px);
+            border: none;
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            color: #2c2c3a;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-radius: 40px;
+        }
+        .tab-btn.active {
+            background-color: #2c3e2f;
+            color: white;
+            box-shadow: 0 4px 10px rgba(44,62,47,0.3);
+        }
+        .tab-btn:hover:not(.active) {
+            background-color: #f1f1ef;
+            color: #2c3e2f;
+        }
+        .tab-pane {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        .tab-pane.active-pane {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        /* Hero section con fondo transparente (se ve el fondo dinámico detrás) */
+        .hero-section {
+            padding: 60px 0 40px;
+            text-align: center;
+            background: transparent;
+        }
+        .hero-tag {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #d9b48b;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: #1e2a1c;
+        }
+        .hero-sub {
+            font-size: 1.2rem;
+            color: #2d2d3a;
+            max-width: 680px;
+            margin: 0 auto 32px;
+            background: rgba(255,255,245,0.5);
+            padding: 8px 20px;
+            border-radius: 60px;
+            display: inline-block;
+        }
+        .pill-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin: 32px 0 24px;
+        }
+        .pill {
+            background: rgba(243, 242, 238, 0.8);
+            backdrop-filter: blur(2px);
+            padding: 8px 24px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #2c3e2f;
+        }
+        .exp-badge {
+            background: rgba(250, 247, 240, 0.9);
+            backdrop-filter: blur(4px);
+            padding: 20px;
+            border-radius: 32px;
+            text-align: center;
+            margin: 32px 0 20px;
+        }
+        .exp-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #b87c4a;
+            font-family: 'Playfair Display', serif;
+        }
+        .exp-text {
+            font-weight: 500;
+            color: #2c3e2f;
+        }
+
+        /* Grid servicios */
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            margin: 60px 0 32px;
+            color: #1e2a1c;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+        .service-card {
+             background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(2px);
+            border-radius: 28px;
+            padding: 28px 24px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid rgba(236, 233, 226, 0.8);
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 35px -12px rgba(0,0,0,0.15);
+            background: rgba(255,255,255,0.98);
+        }
+        .service-icon {
+            font-size: 2.5rem;
+            color: #b87c4a;
+            margin-bottom: 20px;
+        }
+        .service-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            font-family: 'Playfair Display', serif;
+        }
+        .service-desc {
+            color: #4b4b5a;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        .service-feature {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin: 16px 0 10px;
+            color: #2c3e2f;
+        }
+        .btn-outline {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 24px;
+            border: 1.5px solid #c9bfae;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-decoration: none;
+            color: #2c3e2f;
+            transition: all 0.2s;
+            background: rgba(255,255,245,0.8);
+            cursor: pointer;
+        }
+        .btn-outline:hover {
+            background: #2c3e2f;
+            border-color: #2c3e2f;
+            color: white;
+        }
+
+        .values-section {
+            background: rgba(249, 247, 242, 0.92);
+            backdrop-filter: blur(4px);
+            border-radius: 48px;
+            padding: 48px 32px;
+            margin: 60px 0;
+            text-align: center;
+        }
+        .values-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 32px;
+        }
+        .value-item {
+            flex: 1;
+            min-width: 160px;
+        }
+        .value-icon {
+            font-size: 2rem;
+            color: #b87c4a;
+        }
+
+        .why-us {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+            margin: 40px 0;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(4px);
+            border-radius: 40px;
+            padding: 20px;
+        }
+        .why-text {
+            flex: 1;
+        }
+        .why-text h3 {
+            font-size: 1.8rem;
+            font-family: 'Playfair Display', serif;
+        }
+        .why-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+        .why-list li {
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .why-list i {
+            color: #b87c4a;
+        }
+        .why-image {
+            flex: 1;
+            background: rgba(231, 223, 211, 0.7);
+            border-radius: 32px;
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #8b694a;
+        }
+
+        .partners {
+            text-align: center;
+            margin: 60px 0;
+            padding: 32px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(4px);
+            border-top: 1px solid #edeae3;
+            border-radius: 48px;
+        }
+        .partner-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 32px;
+            font-weight: 500;
+            color: #3e3e52;
+        }
+
+        footer {
+            text-align: center;
+            padding: 32px;
+            border-top: 1px solid rgba(226, 224, 216, 0.6);
+            font-size: 0.8rem;
+            color: #2c2c3a;
+            background: rgba(255,255,245,0.8);
+            border-radius: 32px 32px 0 0;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 720px) {
+            .hero-title { font-size: 2.2rem; }
+            .section-title { font-size: 1.8rem; }
+            .services-grid { gap: 20px; }
+            .tab-btn { padding: 8px 20px; font-size: 0.9rem;}
+        }
+    </style>
+</head>
+<body>
+
+<!-- Fondo con carrusel de 3 imágenes -->
+<div class="hero-slideshow">
+    <div class="slide active" style="background-image: url('https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
+    <!-- Imagen 1: Persona (diseñadora de interiores) -->
+    <div class="slide" style="background-image: url('https://images.pexels.com/photos/1578115/pexels-photo-1578115.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
+    <!-- Imagen 2: Sala elegante moderna -->
+    <div class="slide" style="background-image: url('https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
+    <!-- Imagen 3: Pared blanca con maceta y planta -->
+</div>
+<div class="overlay"></div>
+
+<div class="content-wrapper">
+    <div class="container">
+        <!-- Sistema de tabs -->
+        <div class="tabs-container" id="main-tabs">
+            <div class="tabs">
+                <!--<button class="tab-btn active" data-tab="tab1">Residencias</button>
+                <button class="tab-btn" data-tab="tab2">Oficinas & Coworking</button>
+                <button class="tab-btn" data-tab="tab3">Espacios Comerciales</button>-->
+            </div>
+            
+            <div id="tab1" class="tab-pane active-pane">
+                <div class="hero-section">
+                    <div class="hero-tag">DISEÑO QUE HABITA</div>
+                    <h1 class="hero-title">Transformamos espacios,<br> creamos experiencias.</h1>
+                    <p class="hero-sub">En Estudio Íntegro conectamos la estética con la funcionalidad. Creamos interiores que cuentan historias.</p>
+                    <div class="pill-list">
+                        <span class="pill">Armonía</span>
+                        <span class="pill">Sostenibilidad</span>
+                        <span class="pill">Personalización</span>
+                        <span class="pill">Bienestar</span>
+                    </div>
+                    <div class="exp-badge">
+                        <span class="exp-number">+12 años</span>
+                        <span class="exp-text"> de excelencia en diseño residencial y comercial<br> 100% estudio mexicano</span>
+                    </div>
+                    <p style="max-width: 700px; margin: 20px auto; color: #2d2d3a;">En un mundo donde los espacios definen nuestras emociones, lideramos la evolución del interiorismo.</p>
+                </div>
+            </div>
+
+            <div id="tab2" class="tab-pane">
+                <div class="hero-section">
+                    <div class="hero-tag">PRODUCTIVIDAD & ESTILO</div>
+                    <h1 class="hero-title">Diseño de oficinas<br> que inspiran</h1>
+                    <p class="hero-sub">Ambientes laborales pensados en el bienestar, la colaboración y la identidad de marca.</p>
+                    <div class="pill-list">
+                        <span class="pill">Ergonomía</span>
+                        <span class="pill">Flexibilidad</span>
+                        <span class="pill">Zonas verdes</span>
+                        <span class="pill">Branding interior</span>
+                    </div>
+                    <div class="exp-badge">
+                        <span class="exp-number">+80 proyectos</span>
+                        <span class="exp-text"> corporativos entregados con éxito<br> Empresas líderes confían en nosotros</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab3" class="tab-pane">
+                <div class="hero-section">
+                    <div class="hero-tag">HOSPITALITY & RETAIL</div>
+                    <h1 class="hero-title">Espacios comerciales<br> que venden experiencias</h1>
+                    <p class="hero-sub">Diseño para hoteles, restaurantes, tiendas. Atmósferas que conectan con tu cliente.</p>
+                    <div class="pill-list">
+                        <span class="pill">Iluminación escénica</span>
+                        <span class="pill">Acento visual</span>
+                        <span class="pill">Materiales sensoriales</span>
+                        <span class="pill">Distribución estratégica</span>
+                    </div>
+                    <div class="exp-badge">
+                        <span class="exp-number">+45 locales</span>
+                        <span class="exp-text"> en México y Latinoamérica<br> adaptados a cada marca</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Nuestros servicios de interiorismo</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-home"></i></div>
+                <div class="service-title">Diseño Residencial</div>
+                <div class="service-desc">Hogares que reflejan tu personalidad. Cada rincón pensado para tu día a día.</div>
+                <div class="service-feature">✨ Diseño para tú espacio personal y familiar</div>
+                <a href="#" class="btn-outline">Ver más <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-drafting-compass"></i></div>
+                <div class="service-title">Renovaciones</div>
+                <div class="service-desc">Cocinas, baños y áreas comunes. Aumentamos plusvalía y confort.</div>
+                <div class="service-feature">🔨 Gestión de obra + render realista</div>
+                <a href="#" class="btn-outline">Ver más <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-store"></i></div>
+                <div class="service-title">Diseño Comercial</div>
+                <div class="service-desc">Locales, boutiques, cafeterías. Potenciamos la experiencia de compra.</div>
+                <div class="service-feature">📈 Análisis de flujo + identidad visual</div>
+                <a href="#" class="btn-outline">Ver más <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            
+        </div>
+
+        <div class="values-section">
+            <h3 style="font-size: 1.8rem; font-family: 'Playfair Display';">Valores agregados</h3>
+            <div class="values-grid">
+                <div class="value-item"><div class="value-icon"><i class="fas fa-pencil-ruler"></i></div><p>Planos ejecutivos y permisología</p></div>
+                <div class="value-item"><div class="value-icon"><i class="fas fa-truck"></i></div><p>Logística de mobiliario a medida</p></div>
+                <div class="value-item"><div class="value-icon"><i class="fas fa-hand-sparkles"></i></div><p>Selección de acabados premium</p></div>
+                <div class="value-item"><div class="value-icon"><i class="fas fa-chart-line"></i></div><p>Asesoría post-entrega garantizada</p></div>
+            </div>
+        </div>
+
+        <div class="why-us">
+            <div class="why-text">
+                <h3>¿Por qué elegir nuestro estudio?</h3>
+                <ul class="why-list">
+                    <li><i class="fas fa-check-circle"></i> Más de 300 proyectos completados</li>
+                    <li><i class="fas fa-check-circle"></i> Equipo multidisciplinario</li>
+                    <li><i class="fas fa-check-circle"></i> Enfoque sostenible</li>
+                    <li><i class="fas fa-check-circle"></i> Cumplimiento de plazos y presupuesto</li>
+                    <li><i class="fas fa-check-circle"></i> Diseño 100% personalizado</li>
+                </ul>
+            </div>
+            <div class="why-image">
+                <img src="files/Remove_the_person_ma0UUllCcc.png" alt="nuestro diseño" style="width: 40%; border-radius: 24px;">
+            </div>
+        </div>
+
+        <div class="partners">
+            <h3 style="font-size: 1.6rem;">Nuestros aliados & partners</h3>
+            <p style="margin-top: 8px;">Colaboramos con las mejores marcas del sector.</p>
+            <div class="partner-logos">
+                <span>Mobiliario & Deco</span>
+                <span>Iluminación Architectural</span>
+                <span>Pinturas ECO</span>
+                <span>Textiles Premium</span>
+                <span>Marmoles & Piedras</span>
+            </div>
+            <p style="margin-top: 24px; font-size: 0.9rem;">Soluciones integrales a nivel nacional, adaptadas a tus necesidades.</p>
+        </div>
+    </div>
+    <footer>
+        <p>© 2025 Estudio Íntegro — Diseño de interiores con alma mexicana.</p>
+        <p><i class="fas fa-envelope"></i> hola@estudiointegro.mx &nbsp;|&nbsp; <i class="fas fa-phone-alt"></i> +52 (55) 1234 5678</p>
+    </footer>
+</div>
+
+<script>
+    // Carrusel de fondo (cambio automático cada 5 segundos)
+    let slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+
+    function nextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+    setInterval(nextSlide, 5000);
+
+    // Lógica de pestañas
+    const tabs = document.querySelectorAll('.tab-btn');
+    const panes = document.querySelectorAll('.tab-pane');
+
+    function activateTab(tabId) {
+        panes.forEach(pane => pane.classList.remove('active-pane'));
+        const activePane = document.getElementById(tabId);
+        if(activePane) activePane.classList.add('active-pane');
+        tabs.forEach(btn => {
+            btn.classList.remove('active');
+            if(btn.getAttribute('data-tab') === tabId) btn.classList.add('active');
+        });
+        window.location.hash = tabId;
+    }
+
+    tabs.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const tabId = btn.getAttribute('data-tab');
+            if(tabId) activateTab(tabId);
+        });
+    });
+
+    const initialHash = window.location.hash.substring(1);
+    if(initialHash && ['tab1'].includes(initialHash)) activateTab(initialHash);
+    else activateTab('tab1');
+
+    // Demo botones Ver más
+    document.querySelectorAll('.btn-outline').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('✨ Demo: Detalles completos del servicio de diseño de interiores.');
+        });
+    });
+</script>
+</body>
+</html>
