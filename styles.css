@@ -7,7 +7,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            color: #2c2b2b;
+            color: #696161;
             background-color: #fefcf8;
             line-height: 1.5;
             overflow-x: hidden;
@@ -72,7 +72,7 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             font-size: 0.8rem;
-            color: #7a6a4b;
+            color: #b6985e;
             margin-bottom: 1rem;
         }
 
@@ -312,7 +312,7 @@
 
         .testimonial-card {
             min-width: 320px;
-            background: white;
+            /*background: white;*/
             border-radius: 32px;
             padding: 1.8rem;
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
@@ -323,7 +323,7 @@
         /* Contacto */
         .contact {
             padding: 5rem 0;
-            background: #e8e2d4;
+          /*  background: #e8e2d4;*/
         }
 
         .contact-grid {
@@ -363,7 +363,7 @@
         }
 
         .contact-info i {
-            color: #c8a95f;
+            color: #fefcf8;
             width: 25px;
         }
 
