@@ -3,433 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Espacios Yamil | Diseño de Interiores de Lujo</title>
+    <title>Espacios YAMIL | Diseño de Interiores de Lujo</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* ===== RESET Y GLOBALES ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            color: #2c2b2b;
-            background-color: #fefcf8;
-            line-height: 1.5;
-            overflow-x: hidden;
-        }
-
-        /* Fondo dinámico con movimiento scroll */
-        .dynamic-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            transition: background-image 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-            background-size: cover;
-            background-position: center;
-            filter: brightness(0.35) contrast(1.05);
-        }
-
-        .dynamic-bg::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.55);
-            z-index: 1;
-        }
-
-        .wrapper {
-            position: relative;
-            z-index: 2;
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 28px;
-        }
-
-        /* Tipografía */
-        h1, h2, h3, .logo {
-            font-family: 'Playfair Display', serif;
-        }
-
-        h1 {
-            font-size: 3.8rem;
-            line-height: 1.2;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .highlight, span {
-            color: #c8a95f;
-        }
-
-        .section-subtitle {
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.8rem;
-            color: #7a6a4b;
-            margin-bottom: 1rem;
-        }
-
-        /* Botones */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 32px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .btn-primary {
-            background: #c8a95f;
-            color: #1a1a1a;
-        }
-
-        .btn-primary:hover {
-            background: #b08a3a;
-            transform: translateY(-3px);
-            box-shadow: 0 15px 25px -10px rgba(0,0,0,0.2);
-        }
-
-        .btn-outline-light {
-            border: 2px solid #c8a95f;
-            color: #c8a95f;
-            padding: 10px 24px;
-            border-radius: 40px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.2s;
-            display: inline-block;
-        }
-
-        .btn-outline-light:hover {
-            background: #c8a95f;
-            color: white;
-        }
-
-        /* ===== NAVBAR CORREGIDO ===== */
-        header {
-            position: relative;
-            z-index: 1000;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 0;
-            color: white;
-            position: relative;
-            z-index: 1001;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        }
-
-        .logo span {
-            color: #c8a95f;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.2s;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-        }
-
-        .nav-links a:hover {
-            color: #c8a95f;
-        }
-
-        .menu-icon {
-            display: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: white;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-        }
-
-        /* Hero con padding-top para que no quede pegado al navbar */
-        .hero {
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            color: white;
-            padding-top: 2rem;
-        }
-
-        .hero-tag {
-            font-size: 0.8rem;
-            letter-spacing: 3px;
-            background: rgba(0,0,0,0.5);
-            padding: 6px 12px;
-            border-radius: 40px;
-            display: inline-block;
-            margin-bottom: 1rem;
-        }
-
-        .hero-content h1 {
-            margin-bottom: 1rem;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-        }
-
-        .hero-content p {
-            max-width: 600px;
-            margin: 1.5rem 0;
-            font-size: 1.1rem;
-            text-shadow: 0 1px 4px rgba(0,0,0,0.3);
-        }
-
-        /* Partners */
-        .partners {
-            text-align: center;
-            padding: 4rem 0;
-            background: white;
-            border-radius: 48px 48px 0 0;
-            margin-top: -2rem;
-            position: relative;
-            z-index: 10;
-        }
-
-        .partner-logos {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        .floating-img-mini {
-            animation: floatSoft 4s infinite ease-in-out;
-            border-radius: 16px;
-            max-width: 130px;
-            filter: grayscale(0.3);
-            transition: 0.3s;
-        }
-
-        .floating-img-mini:hover {
-            filter: grayscale(0);
-            transform: scale(1.05);
-        }
-
-        /* Marca Premium */
-        .premium-brand {
-            padding: 5rem 0;
-            background: #f3efe7;
-        }
-
-        .premium-grid {
-            display: flex;
-            gap: 3rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .premium-text {
-            flex: 1;
-        }
-
-        .premium-image {
-            flex: 1;
-        }
-
-        .badge {
-            background: #c8a95f;
-            color: #1a1a1a;
-            padding: 4px 12px;
-            border-radius: 50px;
-            font-size: 0.7rem;
-            font-weight: bold;
-            display: inline-block;
-            margin-bottom: 1rem;
-        }
-
-        /* Productos */
-        .products {
-            padding: 5rem 0;
-            background: white;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .product-card {
-            background: #f9f7f2;
-            padding: 2rem;
-            border-radius: 32px;
-            text-align: center;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
-        }
-
-        .product-icon {
-            font-size: 2.5rem;
-            color: #c8a95f;
-            margin-bottom: 1rem;
-        }
-
-        /* Testimonios Slider */
-        .testimonials {
-            background: #fefcf8;
-            padding: 4rem 0;
-            text-align: center;
-        }
-
-        .testimonial-slider {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            gap: 2rem;
-            padding: 1rem 0.5rem;
-            scroll-behavior: smooth;
-        }
-
-        .testimonial-card {
-            min-width: 320px;
-            background: white;
-            border-radius: 32px;
-            padding: 1.8rem;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            scroll-snap-align: start;
-            transition: 0.2s;
-        }
-
-        /* Contacto */
-        .contact {
-            padding: 5rem 0;
-            background: #e8e2d4;
-        }
-
-        .contact-grid {
-            display: flex;
-            gap: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-info, .contact-form {
-            flex: 1;
-        }
-
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 1rem;
-            border: none;
-            border-radius: 30px;
-            font-family: 'Inter';
-        }
-
-        .contact-form textarea {
-            min-height: 100px;
-            border-radius: 20px;
-        }
-
-        .contact-info ul {
-            list-style: none;
-            margin-top: 2rem;
-        }
-
-        .contact-info li {
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .contact-info i {
-            color: #c8a95f;
-            width: 25px;
-        }
-
-        footer {
-            background: #1e1b16;
-            color: #aaa;
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        /* Imágenes flotantes */
-        .floating-img {
-            animation: floatSoft 5s infinite ease-in-out;
-            border-radius: 32px;
-            width: 100%;
-            object-fit: cover;
-            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.2);
-        }
-
-        @keyframes floatSoft {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links { 
-                display: none; 
-            }
-            .menu-icon { 
-                display: block; 
-            }
-            h1 { 
-                font-size: 2.5rem; 
-            }
-            .premium-grid { 
-                flex-direction: column; 
-            }
-            .testimonial-card { 
-                min-width: 280px; 
-            }
-            .navbar {
-                flex-wrap: wrap;
-            }
-        }
-    </style>
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<!-- Fondo Dinámico (cambia con scroll) -->
+<!-- Fondo Dinámico (cambia automáticamente, NO con scroll) -->
 <div class="dynamic-bg" id="dynamicBg"></div>
 
 <div class="wrapper">
-    <!-- Header / Navegación - AHORA VISIBLE -->
+    <!-- Header / Navegación -->
     <header>
         <div class="container">
             <nav class="navbar">
@@ -466,8 +54,8 @@
             <div class="partner-logos">
                 <img src="files/interior.jpg" alt="Partner 1" class="floating-img-mini">
                 <img src="files/interior2.jpg" alt="Partner 2" class="floating-img-mini">
-                <img src="files/Remove_the_person_ma0UUllCcc.png" alt="Partner 3" class="floating-img-mini">
-                <img src="files/interior3.jpg" alt="Partner 4" class="floating-img-mini">
+                <img src="files/interior3.jpg" alt="Partner 3" class="floating-img-mini">
+                <img src="files/Remove_the_person_ma0UUllCcc.png" alt="Partner 4" class="floating-img-mini">
             </div>
         </div>
     </section>
@@ -478,10 +66,9 @@
             <div class="premium-grid">
                 <div class="premium-text">
                     <span class="badge">NUESTRA MARCA</span>
-                    <h2>Lujo</h2>
-                    <p>Es una marca de lujo dedicada a la fabricación y diseño de cortinas , pérgolas, toldos y soluciones de diseño de interiores. Nace como una marca con más de 12 años de experiencia en la decoración de interiores.</p>
-                    <a href="#" class="btn-outline-light">Descubrir colección →</a>
-                </div>
+                    <h2>OREY</h2>
+                    <p>OREY es una marca de lujo dedicada a la fabricación y diseño propio soluciones de diseño de interiores. Con más de 25 años de experiencia en el mercado de la decoración de interiores.</p>
+                    </div>
                 <div class="premium-image">
                     <img src="https://images.pexels.com/photos/1571459/pexels-photo-1571459.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Cortinas premium" class="floating-img">
                 </div>
@@ -489,37 +76,37 @@
         </div>
     </section>
 
-    <!-- Productos (Persianas, Pisos, Tapices, Exteriores) -->
+    <!-- Productos -->
     <section id="productos" class="products">
         <div class="container">
             <h2>Nuestros <span>productos</span></h2>
             <p class="section-subtitle">Complementamos tus espacios con las mejores soluciones</p>
             <div class="products-grid" id="productsGrid">
                 <div class="product-card">
-                    <div class="product-icon"><i class="fas fa-blinds"></i></div>
+                    <div class="product-icon"></div>
                     <h3>Persianas</h3>
-                    <p>Opciones para cada necesidad de tu hogar.</p>
+                    <p>De la mano de Farz, opciones para cada necesidad de tu hogar.</p>
                 </div>
                 <div class="product-card">
-                    <div class="product-icon"><i class="fas fa-wood"></i></div>
+                    <div class="product-icon"></div>
                     <h3>Pisos</h3>
                     <p>Laminados, madera, vinílicos y alfombras para espacios modernos.</p>
                 </div>
                 <div class="product-card">
-                    <div class="product-icon"><i class="fas fa-palette"></i></div>
+                    <div class="product-icon"></div>
                     <h3>Tapices</h3>
                     <p>Renueva tus paredes con nuestros exclusivos diseños.</p>
                 </div>
                 <div class="product-card">
-                    <div class="product-icon"><i class="fas fa-tree"></i></div>
+                    <div class="product-icon"></div>
                     <h3>Exteriores</h3>
-                    <p>Jardines y balcones, espacios de relax y convivencia.</p>
+                    <p>Terrazas, jardines y balcones, espacios de relax y convivencia.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Reseñas con slider automático -->
+    <!-- Reseñas -->
     <section id="resenas" class="testimonials">
         <div class="container">
             <h2>Reseñas de <span>clientes</span></h2>
@@ -529,7 +116,7 @@
         </div>
     </section>
 
-    <!-- Showroom / Contacto -->
+    <!-- Contacto -->
     <section id="contacto" class="contact">
         <div class="container">
             <div class="contact-grid">
@@ -537,9 +124,9 @@
                     <h2>Ponte en <span>contacto</span></h2>
                     <p>Si necesitas un presupuesto o quieres saber más de alguno de nuestros productos, escríbenos y te contactaremos con toda la información que necesitas.</p>
                     <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> Cuatitlan Izcalli, Edo MX</li>
-                        <li><i class="fas fa-phone-alt"></i>55 56 3774 3493</li>
-                        <li><i class="fas fa-envelope"></i> yamilulisessalinas@gmail.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Showroom: Av. Paseo de la Reforma 123, CDMX</li>
+                        <li><i class="fas fa-phone-alt"></i> +52 55 1234 5678</li>
+                        <li><i class="fas fa-envelope"></i> hola@espaciosdei.com</li>
                     </ul>
                 </div>
                 <div class="contact-form">
@@ -559,149 +146,15 @@
     </footer>
 </div>
 
-<script>
-    // ========== 1. FONDO DINÁMICO CON MOVIMIENTO ==========
-    const bgImages = [
-        "https://images.pexels.com/photos/1571459/pexels-photo-1571459.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
-        "https://images.pexels.com/photos/276583/pexels-photo-276583.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
-        "https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
-        "https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
-        "https://images.pexels.com/photos/1571463/pexels-photo-1571463.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
-        "https://images.pexels.com/photos/2587054/pexels-photo-2587054.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
-        "https://images.pexels.com/photos/279719/pexels-photo-279719.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
-    ];
+<!-- Botón de WhatsApp flotante -->
+<a href="https://wa.me/5215512345678?text=Hola%21%20Me%20interesa%20recibir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20servicios%20de%20dise%C3%B1o%20de%20interiores." 
+   class="whatsapp-float" 
+   target="_blank"
+   rel="noopener noreferrer">
+    <i class="fab fa-whatsapp"></i>
+</a>
 
-    function getRandomBg() {
-        return bgImages[Math.floor(Math.random() * bgImages.length)];
-    }
-
-    const dynamicBg = document.getElementById('dynamicBg');
-    dynamicBg.style.backgroundImage = `url(${getRandomBg()})`;
-
-    let lastScroll = 0;
-    let ticking = false;
-    
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            requestAnimationFrame(() => {
-                const currentScroll = window.scrollY;
-                if (Math.abs(currentScroll - lastScroll) > 180) {
-                    dynamicBg.style.backgroundImage = `url(${getRandomBg()})`;
-                    lastScroll = currentScroll;
-                }
-                ticking = false;
-            });
-            ticking = true;
-        }
-    });
-
-    setInterval(() => {
-        dynamicBg.style.backgroundImage = `url(${getRandomBg()})`;
-        lastScroll = window.scrollY;
-    }, 20000);
-
-    // ========== 2. RESEÑAS ==========
-    const testimonios = [
-        { nombre: "Yanhong Tang", texto: "Me hicieron un armario de cristal que encantó a todos mis amigos. Muy buen servicio.", rating: 5, imagen: "https://randomuser.me/api/portraits/women/68.jpg" },
-        { nombre: "Andrés Navarro", texto: "Instalaron piso nuevo en mi departamento. Rápido, limpio y excelente calidad.", rating: 5, imagen: "https://randomuser.me/api/portraits/men/32.jpg" },
-        { nombre: "Adry Martinez", texto: "Cambié mis persianas viejas en 3 días. Quedaron perfectas, muy satisfecha.", rating: 5, imagen: "https://randomuser.me/api/portraits/women/44.jpg" },
-        { nombre: "Marisol Pérez", texto: "El color de las persianas es idéntico a las originales. Calidad increíble.", rating: 5, imagen: "https://randomuser.me/api/portraits/women/90.jpg" },
-        { nombre: "Felipe Castillo", texto: "Muy buena atención, producto de calidad e instalación muy rápida.", rating: 5, imagen: "https://randomuser.me/api/portraits/men/75.jpg" },
-        { nombre: "Karla Rojas", texto: "Mi cocina integral quedó hermosa, cumplieron presupuesto y tiempo.", rating: 5, imagen: "https://randomuser.me/api/portraits/women/22.jpg" }
-    ];
-
-    const sliderContainer = document.getElementById('testimonialSlider');
-
-    function renderTestimonials() {
-        if (!sliderContainer) return;
-        sliderContainer.innerHTML = '';
-        testimonios.forEach(t => {
-            const card = document.createElement('div');
-            card.className = 'testimonial-card';
-            card.innerHTML = `
-                <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
-                    <img src="${t.imagen}" style="width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 2px solid #c8a95f;">
-                    <div><strong>${t.nombre}</strong><br>⭐ ${t.rating}.0</div>
-                </div>
-                <p>“${t.texto}”</p>
-            `;
-            sliderContainer.appendChild(card);
-        });
-        
-        let index = 0;
-        setInterval(() => {
-            if (sliderContainer.children.length) {
-                index = (index + 1) % sliderContainer.children.length;
-                sliderContainer.children[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-            }
-        }, 4000);
-    }
-
-    renderTestimonials();
-
-    // ========== 3. IMÁGENES EN PRODUCTOS ==========
-    const productImages = [
-        "https://images.pexels.com/photos/2587054/pexels-photo-2587054.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop",
-        "https://images.pexels.com/photos/1648771/pexels-photo-1648771.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop",
-        "https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop",
-        "https://images.pexels.com/photos/280221/pexels-photo-280221.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop"
-    ];
-
-    const productCards = document.querySelectorAll('.product-card');
-    productCards.forEach((card, idx) => {
-        const imgElem = document.createElement('img');
-        imgElem.src = productImages[idx % productImages.length];
-        imgElem.style.width = '100%';
-        imgElem.style.borderRadius = '24px';
-        imgElem.style.marginTop = '1rem';
-        imgElem.style.height = '180px';
-        imgElem.style.objectFit = 'cover';
-        imgElem.classList.add('floating-img');
-        card.appendChild(imgElem);
-    });
-
-    // ========== 4. MENÚ RESPONSIVE ==========
-    const menuIcon = document.querySelector('.menu-icon');
-    const navLinks = document.querySelector('.nav-links');
-    if (menuIcon) {
-        menuIcon.addEventListener('click', () => {
-            if (navLinks.style.display === 'flex') {
-                navLinks.style.display = 'none';
-            } else {
-                navLinks.style.display = 'flex';
-                navLinks.style.flexDirection = 'column';
-                navLinks.style.position = 'absolute';
-                navLinks.style.top = '80px';
-                navLinks.style.left = '0';
-                navLinks.style.width = '100%';
-                navLinks.style.backgroundColor = '#1e1b16';
-                navLinks.style.padding = '2rem';
-                navLinks.style.gap = '1rem';
-                navLinks.style.zIndex = '1000';
-            }
-        });
-    }
-
-    // ========== 5. IMAGEN PREMIUM QUE CAMBIA ==========
-    const premiumImages = [
-        "https://images.pexels.com/photos/1571459/pexels-photo-1571459.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
-        "https://images.pexels.com/photos/276583/pexels-photo-276583.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
-        "https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
-        "https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
-    ];
-    
-    const premiumImg = document.querySelector('.premium-image img');
-    let premiumIdx = 0;
-    if (premiumImg) {
-        setInterval(() => {
-            premiumIdx = (premiumIdx + 1) % premiumImages.length;
-            premiumImg.style.opacity = '0.5';
-            setTimeout(() => {
-                premiumImg.src = premiumImages[premiumIdx];
-                premiumImg.style.opacity = '1';
-            }, 200);
-        }, 7000);
-    }
-</script>
+<!-- Scripts JS -->
+<script src="script.js"></script>
 </body>
 </html>
