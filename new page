@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Plomería Rápida - Expertos en Soluciones Hidráulicas</title>
+    <!-- Font Awesome 6 (Iconos profesionales) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: tipografía moderna y legible -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f9ff;
+            color: #1a2c3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header / Navegación */
+        .navbar {
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(2px);
+            background-color: rgba(255, 255, 255, 0.96);
+        }
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            flex-wrap: wrap;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #0b5e7e;
+        }
+        .logo i {
+            font-size: 2rem;
+            color: #2c7da0;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            color: #1f5068;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #0f7b9e;
+        }
+        .btn-llamada {
+            background: #25D366;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+        .btn-llamada:hover {
+            background: #1da15a;
+            transform: scale(1.02);
+        }
+
+        /* Hero section */
+        .hero {
+            background: linear-gradient(135deg, #d4edf8 0%, #eef5fc 100%);
+            padding: 4rem 0 3.5rem;
+            border-bottom: 1px solid rgba(44, 125, 160, 0.2);
+        }
+        .hero-grid {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .hero-text {
+            flex: 1;
+        }
+        .hero-text h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #0a4b64;
+            line-height: 1.2;
+            margin-bottom: 1.2rem;
+        }
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #2c4b5e;
+            margin-bottom: 1.8rem;
+            max-width: 550px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: #1f7b9e;
+            color: white;
+            border: none;
+            padding: 0.9rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .btn-primary:hover {
+            background: #0e5f7e;
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #1f7b9e;
+            color: #1f7b9e;
+            padding: 0.9rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 700;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .btn-outline:hover {
+            background: #1f7b9e20;
+        }
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+        .hero-image i {
+            font-size: 12rem;
+            color: #2c7da0;
+            filter: drop-shadow(8px 10px 12px rgba(0,0,0,0.1));
+        }
+
+        /* Servicios */
+        .servicios {
+            padding: 5rem 0;
+            background: white;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #0c5c7a;
+        }
+        .section-sub {
+            text-align: center;
+            color: #4f6f82;
+            max-width: 650px;
+            margin: 0 auto 3rem auto;
+        }
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
+            padding: 2rem 1.5rem;
+            flex: 1;
+            min-width: 240px;
+            text-align: center;
+            transition: all 0.25s;
+            border: 1px solid #e2f0f5;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -12px rgba(31, 123, 158, 0.2);
+            border-color: #cbe5ef;
+        }
+        .card i {
+            font-size: 3rem;
+            color: #1f7b9e;
+            margin-bottom: 1rem;
+        }
+        .card h3 {
+            margin-bottom: 0.8rem;
+            font-size: 1.5rem;
+        }
+        .card p {
+            color: #3a5a6e;
+        }
+
+        /* Testimonios / Galería rápida */
+        .testimonios {
+            background: #eef3fa;
+            padding: 4rem 0;
+        }
+        .testi-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .testi-item {
+            background: white;
+            border-radius: 24px;
+            padding: 1.8rem;
+            flex: 1;
+            min-width: 260px;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.02);
+        }
+        .testi-item i.fa-quote-left {
+            color: #9bc9df;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+        .testi-item p {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        .testi-name {
+            font-weight: 700;
+            margin-top: 0.8rem;
+            color: #0b5e7e;
+        }
+
+        /* Contacto rápido */
+        .contacto-sec {
+            padding: 4rem 0;
+            background: white;
+            text-align: center;
+        }
+        .contact-card {
+            background: #ffffff;
+            max-width: 700px;
+            margin: 0 auto;
+            border-radius: 48px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+            border: 1px solid #d6e9f0;
+        }
+        .contact-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.7rem;
+        }
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 1.8rem;
+        }
+        .whatsapp-contact-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .phone-contact-btn {
+            background: #2c7da0;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        .whatsapp-contact-btn:hover {
+            background: #1da15a;
+            transform: scale(1.02);
+        }
+        .phone-contact-btn:hover {
+            background: #1c6380;
+        }
+
+        /* Footer */
+        footer {
+            background: #0d2f3f;
+            color: #cbdbe2;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        .footer-content p {
+            margin: 0.5rem 0;
+        }
+
+        /* --- WHATSAPP FLOTANTE (icono fijo) --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 38px;
+            line-height: 66px;
+            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25);
+            z-index: 1000;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            border: none;
+        }
+        .whatsapp-float i {
+            font-size: 38px;
+            color: white;
+        }
+        .whatsapp-float:hover {
+            background-color: #1da15a;
+            transform: scale(1.08);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        /* tooltip opcional */
+        .whatsapp-float::before {
+            content: "¡Escríbenos!";
+            position: absolute;
+            right: 72px;
+            background: #1f2e38;
+            color: white;
+            font-size: 14px;
+            padding: 6px 12px;
+            border-radius: 30px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.2s;
+            font-weight: 500;
+            pointer-events: none;
+        }
+        .whatsapp-float:hover::before {
+            opacity: 1;
+            visibility: visible;
+            right: 80px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-flex {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                gap: 1.2rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            .hero-image i {
+                font-size: 8rem;
+            }
+            .whatsapp-float {
+                width: 54px;
+                height: 54px;
+                font-size: 30px;
+                bottom: 20px;
+                right: 20px;
+            }
+            .whatsapp-float i {
+                font-size: 30px;
+            }
+        }
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 18px;
+            }
+            .btn-primary, .btn-outline {
+                padding: 0.7rem 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra de navegación -->
+    <div class="navbar">
+        <div class="container nav-flex">
+            <div class="logo">
+                <i class="fas fa-wrench"></i>
+                <span>Plomería<span style="color:#1f7b9e;"> Rápida</span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#testimonios">Clientes</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <a href="tel:+521234567890" class="btn-llamada"><i class="fas fa-phone-alt"></i> Llamar ahora</a>
+        </div>
+    </div>
+
+    <!-- Hero section (inicio) -->
+    <section id="inicio" class="hero">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <h1>¿Problemas con tuberías? <br> Soluciones 24/7</h1>
+                <p>Expertos en reparaciones hidráulicas, destapaciones, instalaciones y emergencias. Atención rápida y garantizada.</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" id="heroWhatsappBtn"><i class="fab fa-whatsapp"></i> Contactar por WhatsApp</button>
+                    <button class="btn-outline" id="heroPhoneBtn"><i class="fas fa-phone"></i> Llamada urgente</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <i class="fas fa-faucet"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios" class="servicios">
+        <div class="container">
+            <h2 class="section-title">Nuestros servicios profesionales</h2>
+            <p class="section-sub">Soluciones integrales con tecnología y experiencia para su tranquilidad.</p>
+            <div class="cards">
+                <div class="card">
+                    <i class="fas fa-bath"></i>
+                    <h3>Reparación de fugas</h3>
+                    <p>Detección precisa y reparación inmediata de fugas de agua, evitando daños mayores.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-toilet"></i>
+                    <h3>Destapaciones</h3>
+                    <p>Equipos de alta presión para destapar cañerías, inodoros y desagües rápidamente.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-shower"></i>
+                    <h3>Instalaciones sanitarias</h3>
+                    <p>Instalación de griferías, calentadores y sistemas completos de agua potable.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-water"></i>
+                    <h3>Emergencias 24h</h3>
+                    <p>Servicio de urgencias cualquier día, con plomeros certificados en tu zona.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios / Clientes satisfechos -->
+    <section id="testimonios" class="testimonios">
+        <div class="container">
+            <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+            <p class="section-sub">Calidad y confianza que respaldan cada trabajo.</p>
+            <div class="testi-grid">
+                <div class="testi-item">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Llegaron en menos de 30 minutos y solucionaron la fuga en mi cocina. Excelente servicio, muy profesionales. Recomendados 100%."</p>
+                    <div class="testi-name">— Ana Gutiérrez</div>
+                </div>
+                <div class="testi-item">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Se atascó el drenaje principal y me salvaron de un desastre. Atención por WhatsApp súper rápida, precio justo. ¡Gracias!"</p>
+                    <div class="testi-name">— Roberto Méndez</div>
+                </div>
+                <div class="testi-item">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Instalaron mi calentador de agua nuevo, todo en tiempo récord. Muy limpios y explicaron cada paso. Volveré a contratarlos."</p>
+                    <div class="testi-name">— Laura C. </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de contacto rápido con CTA -->
+    <section id="contacto" class="contacto-sec">
+        <div class="container">
+            <div class="contact-card">
+                <h3><i class="fas fa-headset"></i> ¿Necesitas un plomero ahora?</h3>
+                <p>Contáctanos por WhatsApp o teléfono y un especialista te atenderá de inmediato. Servicio 24/7 en toda la ciudad.</p>
+                <div class="contact-buttons">
+                    <button class="whatsapp-contact-btn" id="contactWhatsappBtn"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                    <button class="phone-contact-btn" id="contactPhoneBtn"><i class="fas fa-phone-alt"></i> (55) 1234 5678</button>
+                </div>
+                <small style="display: block; margin-top: 20px;">Respuesta garantizada en menos de 10 minutos</small>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-content">
+            <p><i class="fas fa-map-marker-alt"></i> Ciudad de México y Área Metropolitana</p>
+            <p>© 2025 Plomería Rápida - Profesionales en soluciones hidrosanitarias</p>
+            <p><i class="fas fa-envelope"></i> contacto@plomeriarapida.com | <i class="fab fa-whatsapp"></i> +52 1 55 1234 5678</p>
+        </div>
+    </footer>
+
+    <!-- Icono FLOTANTE de WhatsApp (el más visible) -->
+    <div class="whatsapp-float" id="floatWhatsappBtn">
+        <i class="fab fa-whatsapp"></i>
+    </div>
+
+    <!-- JavaScript para funcionalidad de botones y número de contacto -->
+    <script>
+        (function() {
+            // Número de teléfono real (cambiar por el número del negocio, formato internacional sin '+' para enlace WhatsApp)
+            // Usamos un número de ejemplo, pero usted debe reemplazarlo por el número de la empresa. (incluyendo código país)
+            const phoneNumber = "521234567890";   // Ejemplo: México +52 1 234567890 -> se concatena "521"...
+            const whatsappLink = `https://wa.me/${phoneNumber}?text=¡Hola!%20Necesito%20ayuda%20con%20un%20servicio%20de%20plomería.`;
+            const telLink = `tel:+${phoneNumber}`;
+            
+            // Función para abrir WhatsApp
+            function openWhatsApp() {
+                window.open(whatsappLink, '_blank');
+            }
+            
+            function makeCall() {
+                window.location.href = telLink;
+            }
+            
+            // ---- Asignar eventos a todos los botones y al icono flotante ----
+            // 1. Botón hero "Contactar por WhatsApp"
+            const heroWhatsapp = document.getElementById('heroWhatsappBtn');
+            if (heroWhatsapp) heroWhatsapp.addEventListener('click', openWhatsApp);
+            
+            // 2. Botón hero "Llamada urgente"
+            const heroPhone = document.getElementById('heroPhoneBtn');
+            if (heroPhone) heroPhone.addEventListener('click', makeCall);
+            
+            // 3. Botón de la sección contacto: WhatsApp
+            const contactWhatsapp = document.getElementById('contactWhatsappBtn');
+            if (contactWhatsapp) contactWhatsapp.addEventListener('click', openWhatsApp);
+            
+            // 4. Botón de la sección contacto: Llamada telefónica
+            const contactPhone = document.getElementById('contactPhoneBtn');
+            if (contactPhone) contactPhone.addEventListener('click', makeCall);
+            
+            // 5. Icono flotante de WhatsApp (el más representativo)
+            const floatBtn = document.getElementById('floatWhatsappBtn');
+            if (floatBtn) floatBtn.addEventListener('click', openWhatsApp);
+            
+            // Opcional: Agregar confirmación o animación ligera
+            console.log("Web de plomería lista, ícono de WhatsApp flotante activo.");
+            
+            // Pequeño detalle: al hacer scroll se podría mantener, no es necesario modificar.
+            // Resaltar que el número mostrado en el botón "phone-contact-btn" es solo texto visual,
+            // pero la acción de llamada usa el mismo número configurado.
+            // Por consistencia también podemos actualizar el texto del botón con el número real formateado.
+            const phoneBtnText = document.getElementById('contactPhoneBtn');
+            if (phoneBtnText) {
+                // Mostrar un número amigable a partir del número real (para vista)
+                const rawNumber = phoneNumber;
+                let displayNumber = rawNumber;
+                if (rawNumber.startsWith('521')) displayNumber = '+52 1 ' + rawNumber.slice(3,5) + ' ' + rawNumber.slice(5);
+                else if (rawNumber.startsWith('52')) displayNumber = '+52 ' + rawNumber.slice(2);
+                else displayNumber = '+' + rawNumber;
+                // Actualizar texto interno manteniendo el icono
+                phoneBtnText.innerHTML = `<i class="fas fa-phone-alt"></i> ${displayNumber}`;
+            }
+            // Igualmente el botón de llamada de navbar usa el enlace tel, pero ya está hardcodeado el número en href.
+            // Para mantener consistencia, modificamos dinámicamente el enlace de "Llamar ahora" en la navbar
+            const llamadaNav = document.querySelector('.btn-llamada');
+            if (llamadaNav) {
+                llamadaNav.setAttribute('href', telLink);
+            }
+            
+            // Smooth scroll para los enlaces internos (mejora UX)
+            document.querySelectorAll('.nav-links a, .logo a, .btn-llamada').forEach(anchor => {
+                if (anchor.getAttribute('href') && anchor.getAttribute('href').startsWith('#')) {
+                    anchor.addEventListener('click', function(e) {
+                        const hash = this.getAttribute('href');
+                        if (hash === "#" || hash === "") return;
+                        const targetElem = document.querySelector(hash);
+                        if (targetElem) {
+                            e.preventDefault();
+                            targetElem.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    });
+                }
+            });
+            // También para enlaces dentro del hero, pero ya está cubierto
+            // Ajuste extra: para que el logo pueda hacer scroll al inicio (si se quiere)
+            const logoLink = document.querySelector('.logo');
+            if (logoLink) {
+                logoLink.style.cursor = 'pointer';
+                logoLink.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+            
+            // También podemos mejorar el botón "llamada ahora" del navbar para que no recargue de forma abrupta, pero mantiene funcionalidad tel
+        })();
+    </script>
+</body>
+</html>
